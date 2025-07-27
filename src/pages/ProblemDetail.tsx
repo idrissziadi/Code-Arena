@@ -644,9 +644,9 @@ export default function ProblemDetail() {
             language={selectedLanguage}
             onLanguageChange={setSelectedLanguage}
             languages={languages}
-            onRun={runCode}
+            onRun={runCustomTest}
             onSubmit={submitCode}
-            isRunning={isRunning}
+            isRunning={isTestingCustom}
             isSubmitting={isSubmitting}
           />
         )}
@@ -676,23 +676,7 @@ export default function ProblemDetail() {
                   onChange={(e) => setCustomInput(e.target.value)}
                   className="min-h-[120px] font-mono text-sm"
                 />
-                <Button 
-                  onClick={runCustomTest}
-                  disabled={isTestingCustom || !code.trim()}
-                  className="w-full"
-                >
-                  {isTestingCustom ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Exécution...
-                    </>
-                  ) : (
-                    <>
-                      <Play className="h-4 w-4 mr-2" />
-                      Exécuter avec cette entrée
-                    </>
-                  )}
-                </Button>
+
               </div>
 
               {/* Output Section */}

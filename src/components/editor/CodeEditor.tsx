@@ -334,7 +334,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
               className="bg-primary/10 border-primary/30 hover:bg-primary/20"
             >
               <Play className="h-4 w-4 mr-2" />
-              {isRunning ? 'Exécution...' : 'Tester'}
+              {isRunning ? 'Exécution...' : 'Exécuter'}
             </Button>
             
             <Button
@@ -350,7 +350,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <kbd className="px-2 py-1 bg-muted rounded text-xs">Ctrl+Enter</kbd>
-            <span>pour tester</span>
+            <span>pour exécuter</span>
             <kbd className="px-2 py-1 bg-muted rounded text-xs">Ctrl+Shift+Enter</kbd>
             <span>pour soumettre</span>
           </div>
