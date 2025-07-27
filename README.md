@@ -43,7 +43,7 @@ Inspired by platforms like **LeetCode** and **GeeksforGeeks**, it is ideal for l
 
 ```bash
 # Clone the repository
-git clone [<YOUR_GIT_URL>](https://github.com/idrissziadi/Code-Arena/)
+git clone https://github.com/idrissziadi/Code-Arena/
 
 # Navigate into the project directory
 cd codearena
