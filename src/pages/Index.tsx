@@ -70,7 +70,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-hero relative">
+    <div className="min-h-screen bg-background relative">
       <AnimatedIconsBackground />
       {/* Navigation */}
       <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm relative z-10">
@@ -114,9 +114,11 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8">
-              <Github className="mr-2 h-5 w-5" />
-              Voir le Code
+            <Button size="lg" variant="outline" className="text-lg px-8" asChild>
+              <a href="https://github.com/idrissziadi/Code-Arena" target="_blank" rel="noopener noreferrer">
+                <Github className="mr-2 h-5 w-5" />
+                Voir le Code
+              </a>
             </Button>
           </div>
         </div>
@@ -187,7 +189,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4 bg-card/20">
+      <section className="py-20 px-4 bg-muted/20">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">

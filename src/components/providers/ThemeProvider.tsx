@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'dark' | 'light' | 'white' | 'system';
+type Theme = 'dark' | 'light' | 'system';
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -44,7 +44,11 @@ export function ThemeProvider({
       root.classList.add(systemTheme);
       return;
     }
-
+    // Si white, applique la classe white, sinon applique la classe du thème
+    if (theme === 'white') {
+      root.classList.add('white');
+      return;
+    }
     root.classList.add(theme);
   }, [theme]);
 

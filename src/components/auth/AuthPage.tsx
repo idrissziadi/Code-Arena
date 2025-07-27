@@ -96,7 +96,7 @@ export const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 relative overflow-hidden">
       {/* Objets animés en arrière-plan */}
       <AnimatedBackground />
       
@@ -113,28 +113,28 @@ export const AuthPage: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm">
+            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50">
               <Code2 className="h-8 w-8 text-primary" />
               <div>
                 <div className="font-semibold">Problèmes</div>
                 <div className="text-sm text-muted-foreground">500+ défis</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm">
+            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50">
               <Trophy className="h-8 w-8 text-accent" />
               <div>
                 <div className="font-semibold">Concours</div>
                 <div className="text-sm text-muted-foreground">Compétitions</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm">
+            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50">
               <Users className="h-8 w-8 text-warning" />
               <div>
                 <div className="font-semibold">Communauté</div>
                 <div className="text-sm text-muted-foreground">Entraide</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm">
+            <div className="flex items-center gap-3 p-4 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50">
               <Zap className="h-8 w-8 text-destructive" />
               <div>
                 <div className="font-semibold">Temps réel</div>
@@ -169,7 +169,7 @@ export const AuthPage: React.FC = () => {
                       type="email"
                       placeholder="votre@email.com"
                       required
-                      className="bg-input/50"
+                      className="bg-background"
                     />
                   </div>
                   <div className="space-y-2">
@@ -180,7 +180,7 @@ export const AuthPage: React.FC = () => {
                       type="password"
                       placeholder="••••••••"
                       required
-                      className="bg-input/50"
+                      className="bg-background"
                     />
                   </div>
                   <Button 
@@ -203,7 +203,7 @@ export const AuthPage: React.FC = () => {
                       type="text"
                       placeholder="votrenom"
                       required
-                      className="bg-input/50"
+                      className="bg-background"
                     />
                   </div>
                   <div className="space-y-2">
@@ -214,7 +214,7 @@ export const AuthPage: React.FC = () => {
                       type="email"
                       placeholder="votre@email.com"
                       required
-                      className="bg-input/50"
+                      className="bg-background"
                     />
                   </div>
                   <div className="space-y-2">
@@ -226,7 +226,7 @@ export const AuthPage: React.FC = () => {
                       placeholder="••••••••"
                       required
                       minLength={6}
-                      className="bg-input/50"
+                      className="bg-background"
                     />
                   </div>
                   <Button 

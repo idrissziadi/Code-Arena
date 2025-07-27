@@ -134,19 +134,14 @@ export const Navbar: React.FC = () => {
                     {theme === 'light' && <span className="ml-auto">✓</span>}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setTheme('white')}>
-                    <Paintbrush className="h-4 w-4 mr-2" />
-                    <span>White</span>
+                    <Monitor className="h-4 w-4 mr-2" />
+                    <span>Système</span>
                     {theme === 'white' && <span className="ml-auto">✓</span>}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setTheme('dark')}>
                     <Moon className="h-4 w-4 mr-2" />
                     <span>Sombre</span>
                     {theme === 'dark' && <span className="ml-auto">✓</span>}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('system')}>
-                    <Monitor className="h-4 w-4 mr-2" />
-                    <span>Système</span>
-                    {theme === 'system' && <span className="ml-auto">✓</span>}
                   </DropdownMenuItem>
                   {isAdmin() && (
                     <>
