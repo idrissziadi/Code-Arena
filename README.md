@@ -1,73 +1,55 @@
-# Welcome to your Lovable project
+# 🧠 CodeArena
 
-## Project info
+**CodeArena** is an advanced web platform for competitive programming, allowing developers to practice coding problems grouped by data structures, track performance, and compete in live challenges.
 
-**URL**: https://lovable.dev/projects/deb95cef-9c62-4dfa-93eb-125ab120548a
+Inspired by platforms like **LeetCode** and **GeeksforGeeks**, it is ideal for learners, students, and developers preparing for interviews or programming contests.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Features
 
-**Use Lovable**
+- ✅ Practice problems by data structure and difficulty  
+- 💡 See example inputs, test cases, and problem tags  
+- 🧪 Submit code and get real-time verdicts via Piston  
+- 📊 Track personal statistics (per problem & structure)  
+- 🎯 Earn badges for milestones  
+- 🧠 View & propose solutions (after solving)  
+- ❤️ Favorite problems  
+- 🗣️ Comment and discuss problems  
+- 🏆 Participate in coding contests  
+- 🛠️ Admin dashboard to manage content
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/deb95cef-9c62-4dfa-93eb-125ab120548a) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ⚙️ Tech Stack
 
-**Use your preferred IDE**
+### 🔧 Backend
+- **Supabase** (PostgreSQL database, Auth, Storage)
+- **Piston API** for code execution
+- **JWT** for secure authentication
+- **Bcrypt.js** for password hashing
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🎨 Frontend
+- **React** with **Vite**
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui** (headless, accessible components)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🛠 Getting Started (Local Setup)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+> Make sure you have [Node.js](https://nodejs.org) installed.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+# Clone the repository
+git clone https://github.com/idrissziadi/Code-Arena/
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Navigate into the project directory
+cd codearena
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/deb95cef-9c62-4dfa-93eb-125ab120548a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
