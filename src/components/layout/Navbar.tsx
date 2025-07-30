@@ -133,10 +133,10 @@ export const Navbar: React.FC = () => {
                     <span>Clair</span>
                     {theme === 'light' && <span className="ml-auto">✓</span>}
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme('white')}>
+                  <DropdownMenuItem onClick={() => setTheme('system')}>
                     <Monitor className="h-4 w-4 mr-2" />
                     <span>Système</span>
-                    {theme === 'white' && <span className="ml-auto">✓</span>}
+                    {theme === 'system' && <span className="ml-auto">✓</span>}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => setTheme('dark')}>
                     <Moon className="h-4 w-4 mr-2" />

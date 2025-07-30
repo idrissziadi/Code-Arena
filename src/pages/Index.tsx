@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import { useAuth } from '@/components/auth/AuthProvider';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,7 +16,10 @@ import {
   TrendingUp,
   ArrowRight,
   Github,
-  Star
+  Star,
+  Sun,
+  Moon,
+  Monitor
 } from 'lucide-react';
 
 // Icônes SVG custom pour Python, C, JS, VSCode
@@ -57,9 +61,33 @@ const AnimatedIconsBackground = () => (
   </div>
 );
 
-// Ajout des animations dans tailwind.config.ts :
-// animate-float-slow, animate-float-medium, animate-float-fast
-// (à ajouter si pas déjà présent)
+// Composant pour le sélecteur de thème
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+
+  const themes = [
+    { value: 'light', icon: Sun, label: 'Clair' },
+    { value: 'dark', icon: Moon, label: 'Sombre' },
+    { value: 'system', icon: Monitor, label: 'Système' }
+  ] as const;
+
+  return (
+    <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
+      {themes.map(({ value, icon: Icon, label }) => (
+        <Button
+          key={value}
+          variant={theme === value ? 'default' : 'ghost'}
+          size="sm"
+          onClick={() => setTheme(value)}
+          className="h-8 w-8 p-0"
+          title={label}
+        >
+          <Icon className="h-4 w-4" />
+        </Button>
+      ))}
+    </div>
+  );
+};
 
 const Index = () => {
   const { user, loading } = useAuth();
@@ -82,15 +110,18 @@ const Index = () => {
                 CodeArena
               </span>
             </div>
-            <Button asChild>
-              <Link to="/auth">Commencer</Link>
-            </Button>
+            <div className="flex items-center space-x-4">
+              <ThemeToggle />
+              <Button asChild>
+                <Link to="/auth">Commencer</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 relative z-10">
         <div className="container mx-auto text-center space-y-8">
           <div className="space-y-4">
             <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
@@ -125,7 +156,7 @@ const Index = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 relative z-10">
         <div className="container mx-auto">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -189,7 +220,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4 bg-muted/20">
+      <section className="py-20 px-4 bg-muted/20 relative z-10">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
@@ -213,7 +244,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 relative z-10">
         <div className="container mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -234,7 +265,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-8 px-4">
+      <footer className="border-t border-border/50 py-8 px-4 relative z-10">
         <div className="container mx-auto text-center text-muted-foreground">
           <p>&copy; 2024 CodeArena. Créé avec passion pour la communauté des développeurs.</p>
         </div>

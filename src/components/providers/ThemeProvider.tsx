@@ -33,22 +33,14 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement;
 
-    root.classList.remove('light', 'dark', 'white');
+    root.classList.remove('light', 'dark', 'system');
 
     if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light';
-
-      root.classList.add(systemTheme);
+      // Appliquer le thème système personnalisé (bleu foncé)
+      root.classList.add('system');
       return;
     }
-    // Si white, applique la classe white, sinon applique la classe du thème
-    if (theme === 'white') {
-      root.classList.add('white');
-      return;
-    }
+    
     root.classList.add(theme);
   }, [theme]);
 
