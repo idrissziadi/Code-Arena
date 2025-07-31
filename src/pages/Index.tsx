@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useTheme } from '@/components/providers/ThemeProvider';
@@ -19,7 +19,9 @@ import {
   Star,
   Sun,
   Moon,
-  Monitor
+  Monitor,
+  Menu,
+  X
 } from 'lucide-react';
 
 // Icônes SVG custom pour Python, C, JS, VSCode
@@ -79,10 +81,10 @@ const ThemeToggle = () => {
           variant={theme === value ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setTheme(value)}
-          className="h-8 w-8 p-0"
+          className="h-7 w-7 sm:h-8 sm:w-8 p-0"
           title={label}
         >
-          <Icon className="h-4 w-4" />
+          <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
         </Button>
       ))}
     </div>
@@ -91,6 +93,7 @@ const ThemeToggle = () => {
 
 const Index = () => {
   const { user, loading } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Redirect to dashboard if authenticated
   if (!loading && user) {
@@ -104,19 +107,52 @@ const Index = () => {
       <nav className="border-b border-border/50 bg-background/80 backdrop-blur-sm relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
+            {/* Logo */}
             <div className="flex items-center space-x-2">
-              <Code2 className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <Code2 className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+              <span className="text-lg sm:text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                 CodeArena
               </span>
             </div>
-            <div className="flex items-center space-x-4">
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-4">
               <ThemeToggle />
               <Button asChild>
                 <Link to="/auth">Commencer</Link>
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
+              </Button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-sm">
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                <Button asChild className="w-full justify-start">
+                  <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                    Commencer
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
