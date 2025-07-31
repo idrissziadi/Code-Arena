@@ -16,7 +16,9 @@ import {
   XCircle,
   Target,
   TrendingUp,
-  BookOpen
+  BookOpen,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface Problem {
@@ -46,6 +48,8 @@ export default function Problems() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [selectedStructure, setSelectedStructure] = useState<string>('all');
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const problemsPerPage = 12;
 
   useEffect(() => {
     loadProblems();
@@ -55,6 +59,11 @@ export default function Problems() {
   useEffect(() => {
     filterProblems();
   }, [problems, searchTerm, selectedDifficulty, selectedStructure, showFavoritesOnly]);
+
+  useEffect(() => {
+    // Reset to first page when filters change
+    setCurrentPage(1);
+  }, [searchTerm, selectedDifficulty, selectedStructure, showFavoritesOnly]);
 
   const loadProblems = async () => {
     try {
@@ -135,7 +144,13 @@ export default function Problems() {
 
     // Structure filter
     if (selectedStructure !== 'all') {
-      filtered = filtered.filter(problem => problem.data_structures?.name === selectedStructure);
+      if (selectedStructure === 'none') {
+        // Filter problems without data structure
+        filtered = filtered.filter(problem => !problem.data_structures);
+      } else {
+        // Filter problems with specific data structure
+        filtered = filtered.filter(problem => problem.data_structures?.name === selectedStructure);
+      }
     }
 
     // Favorites filter
@@ -144,6 +159,56 @@ export default function Problems() {
     }
 
     setFilteredProblems(filtered);
+  };
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProblems.length / problemsPerPage);
+  const startIndex = (currentPage - 1) * problemsPerPage;
+  const endIndex = startIndex + problemsPerPage;
+  const currentProblems = filteredProblems.slice(startIndex, endIndex);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+    
+    if (totalPages <= maxVisiblePages) {
+      // Show all pages if total is small
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      // Show pages around current page
+      let start = Math.max(1, currentPage - 2);
+      let end = Math.min(totalPages, currentPage + 2);
+      
+      if (currentPage <= 3) {
+        end = Math.min(totalPages, maxVisiblePages);
+      } else if (currentPage >= totalPages - 2) {
+        start = Math.max(1, totalPages - maxVisiblePages + 1);
+      }
+      
+      for (let i = start; i <= end; i++) {
+        pages.push(i);
+      }
+    }
+    
+    return pages;
   };
 
   const toggleFavorite = async (problemId: string) => {
@@ -269,6 +334,7 @@ export default function Problems() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Toutes les structures</SelectItem>
+                <SelectItem value="none">Sans structure de données</SelectItem>
                 {dataStructures.map((structure) => (
                   <SelectItem key={structure.id} value={structure.name}>
                     {structure.name}
@@ -297,11 +363,16 @@ export default function Problems() {
         <div className="flex items-center justify-between">
           <p className="text-sm text-muted-foreground">
             {filteredProblems.length} problème(s) trouvé(s)
+            {totalPages > 1 && (
+              <span className="ml-2">
+                - Page {currentPage} sur {totalPages}
+              </span>
+            )}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProblems.map((problem) => (
+          {currentProblems.map((problem) => (
             <Card key={problem.id} className="shadow-card hover:shadow-primary/20 transition-all group">
               <CardHeader className="space-y-3">
                 <div className="flex items-start justify-between">
@@ -382,6 +453,50 @@ export default function Problems() {
             </Card>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center space-x-2 py-8">
+            {/* Previous Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={goToPreviousPage}
+              disabled={currentPage === 1}
+              className="flex items-center gap-2"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Précédent
+            </Button>
+
+            {/* Page Numbers */}
+            <div className="flex items-center space-x-1">
+              {getPageNumbers().map((page) => (
+                <Button
+                  key={page}
+                  variant={currentPage === page ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => goToPage(page)}
+                  className="w-10 h-10"
+                >
+                  {page}
+                </Button>
+              ))}
+            </div>
+
+            {/* Next Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={goToNextPage}
+              disabled={currentPage === totalPages}
+              className="flex items-center gap-2"
+            >
+              Suivant
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
 
         {filteredProblems.length === 0 && (
           <Card className="shadow-card">
